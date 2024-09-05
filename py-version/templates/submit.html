@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="post" class="row-grp" id="form">
+            <div class="col">
+                <label for="enrollmentNo" class="form-label">Enrollment Number</label>
+                <input type="text" class="form-control" name="enrollmentNo" id="enrollmentNo" placeholder="Eg. 12210021">
+            </div>
+            <div class="col">
+                <label for="email" class="form-label">Email </label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="enrollmentNo.gcit@rub.edu.bt">
+            </div>
+            <div class="col">
+                <label for="pw" class="form-label">Password for vle</label>
+                <input type="password" class="form-control" id="pw" name="pw">
+            </div>
+            <div class="col checkbox">
+                <label for="notify" class="form-check-label">Send me Notification</label>
+                <input class="form-check" type="checkbox" name="notify" id="notify">
+            </div>
+            <div class="col">
+                <button class="btn btn-primary-bg" type="submit">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    
+    *{
+        font-family: "Montserrat", sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid black;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .col{
+        display: grid;
+        grid-column: auto;
+        margin: 2px;
+    }
+    .col.checkbox{
+        display: flex;
+    }
+
+    .form-control{
+        border-radius: 4px;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .form-control:focus{
+        outline: 2px solid skyblue;
+    }
+
+    .btn{
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .btn.btn-primary-bg{
+        margin: 2px;
+        color: white;
+        background-color: rgb(15, 15, 217);
+    }
+
+</style>
+<script src="main.js"></script>
+</html>

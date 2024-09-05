@@ -21,10 +21,14 @@ async function getCourse(page){
 
   const cLink = await page.$$(dummyL);
   let list = [];
+
   for(let it of cLink){
-    let context = await it.evaluate(el => el.href);
-    if(!(list.includes(context))){
-      list.push(context)
+    let link = await it.evaluate(el => el.href), courseName = await it.evaluate(el => el.innerText);
+    if(!(list.includes(link)) && !(courseName.includes('\n'))){
+      list.push({
+        link: link,
+        cName: courseName
+      })
     };
   };
   return list
@@ -34,7 +38,7 @@ async function getCourse(page){
 async function getAssignment(page, link){
   const dummyforAssign = "a[href*='https://vle.gcit.edu.bt/mod/assign/view.php?id=']"
   await page.goto(link);
-  const courseName = await page.$eval('h1.h2', el => el.innerText)
+  
   const list = [];
   const alist = await page.$$(dummyforAssign)
   for(let it of alist){
@@ -43,7 +47,7 @@ async function getAssignment(page, link){
       list.push(context)
     };
   };
-  return [list, courseName]
+  return list
 };
 
 function convert24(time){
@@ -133,9 +137,12 @@ async function main(eNo, pw){
   //list of courses enrolled
   const clist = await getCourse(page);
   console.log(clist)
-  for(let link of clist){
-    const [alist,courseName] = await getAssignment(page, link);
-    const stat = await getStatus(page, alist, link, courseName);
+// [{link}]
+
+  for(let it of clist){
+    let clink = it['link'], cname = it['cName'];
+    const alist = await getAssignment(page, clink);
+    const stat = await getStatus(page, alist, clink, cname);
     console.log(stat)
   }
   
@@ -145,8 +152,8 @@ async function main(eNo, pw){
 
 
 (async () => {
-  // await main('12240095', 'Gengiskhan10@123');
-  main('12240094',  'Cid@11608004092')
+  main('12240095', 'Gengiskhan10@123');
+  // main('12240095',  'Cid@11608004092')
 })();
 
 

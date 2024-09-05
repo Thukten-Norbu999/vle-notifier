@@ -17,6 +17,9 @@
 
 import { query } from '../config/db';
 
+
+
+
 const User = {
   create: (userData, callback) => {
     const sql = 'INSERT INTO users (first_name, last_name, email) VALUES (?, ?, ?)';
