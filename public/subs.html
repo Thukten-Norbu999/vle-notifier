@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <title>Subcribe</title>
+  </head>
+  <body>
+
+    <div class="container-sm">
+        <div class="container-fluid p-3 m-2">
+            <form id="addUserForm" class="row needs-validation" novalidate>
+                <div class="form-group col-6">
+                  <label for="addUser_enroll" class="form-label">Enrollment Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="addUser_enroll"
+                    required
+                    minlength="8"
+                    max-length="8"
+                    pattern="[0-9{8}]"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid enrollment number (8 characters).
+                  </div>
+                </div>
+                <div class="form-group col-6">
+                  <label for="addUser_email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="addUser_email" required />
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+                <div class="form-group col-12">
+                  <label for="addUser_Pw" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="addUser_Pw" required />
+                  <div class="invalid-feedback">Please enter a password.</div>
+                </div>
+                <div class="form-group col-3 d-flex flex-row">
+                  <input type="checkbox" class="form-check-input" id="showPw" />
+                  <label for="showPw" class="form-label">Show Password</label>
+                </div>
+                <div class="form-group col-12 d-flex flex-row">
+                  <input type="checkbox" class="form-check-input" id="addUser-sendMail" />
+          
+                  <label for="addUser-sendMail" class="form-label">
+                    I read the privacy policy and still would like to go through with
+                    giving my credentials...
+                  </label>
+                </div>
+
+                <div class="form-group col-6">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+              </form>
+        </div>
+    </div>
+    
+    <!-- Privacy Policy Modal -->
+    <div
+      class="modal fade"
+      id="privacyPolicyModal"
+      tabindex="-1"
+      aria-labelledby="privacyPolicyModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="privacyPolicyModalLabel">
+              Privacy Policy
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Last Updated: [Date]</p>
+            <p>
+              This privacy policy explains how we handle and protect the
+              personal information you provide when using our script or
+              software. This document is intended to inform you about the data
+              collection, usage, and your rights regarding your personal
+              information.
+            </p>
+
+            <h6>1. Information Collection</h6>
+            <p>Our script or software may collect the following information:</p>
+            <ul>
+              <li>
+                <strong>Login Credentials</strong>: Required to access the
+                platform and used exclusively for authentication.
+              </li>
+              <li>
+                <strong>Course Information and Assignment Statuses</strong>:
+                Accessed to support academic tracking and reminders.
+              </li>
+            </ul>
+
+            <h6>2. How We Use Your Information</h6>
+            <p>
+              The information we collect is used solely for the purpose of
+              logging in, retrieving, and providing academic information to
+              assist with tracking.
+            </p>
+
+            <h6>3. Data Storage and Security</h6>
+            <p>
+              We do not store your credentials after login. All retrieved data
+              is temporary and discarded at the end of the session.
+            </p>
+
+            <h6>4. Data Sharing and Disclosure</h6>
+            <p>
+              We do not share, sell, or distribute your data to third parties.
+            </p>
+
+            <h6>5. User Responsibility</h6>
+            <p>
+              By providing your credentials, you agree to use the script
+              responsibly for its intended purpose.
+            </p>
+
+            <h6>6. Changes to This Privacy Policy</h6>
+            <p>Any changes to this privacy policy will be posted here.</p>
+
+            <h6>7. Contact Us</h6>
+            <p>
+              If you have questions or concerns, please contact us at [your
+              contact information].
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script>
+    const cBox = document.getElementById("showPw");
+    const pwInpt = document.getElementById("addUser_Pw");
+    cBox.addEventListener("change", () => {
+      pwInpt.type = cBox.checked ? "text" : "password";
+    });
+
+    // Validate form before submission
+
+    document
+      .getElementById("addUser-btn")
+      .addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent form from submitting
+        const form = document.getElementById("addUserForm");
+
+        if (form.checkValidity() === false) {
+          form.classList.add("was-validated"); // Add Bootstrap validation class
+        } else {
+          // Form is valid, you can proceed with submission
+          alert("Form is valid!"); // Replace this with actual submission logic
+          form.classList.remove("was-validated"); // Reset validation state
+        //   const modal = bootstrap.Modal.getInstance(
+        //     document.getElementById("addUserForm")
+        //   );
+          // Close the modal after submission
+        }
+      });
+
+    console.log(document.getElementById("addUserForm"));
+  </script>
+</html>
