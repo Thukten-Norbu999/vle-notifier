@@ -1,7 +1,5 @@
 import bcrypt from "bcryptjs";
 import { MongoClient } from "mongodb";
-import crypto from "crypto"
-import dotenv from "dotenv"
 const uri = "mongodb://localhost:27017/notfier";
 
 export async function connectMongo() {
