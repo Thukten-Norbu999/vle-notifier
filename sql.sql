@@ -3,3 +3,4 @@ create table user(
     email varchar(100) unique,
     pw varchar()
 )
+

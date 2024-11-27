@@ -1,19 +1,20 @@
 import bcrypt from "bcryptjs";
 import { MongoClient } from "mongodb";
-
+import crypto from "crypto"
+import dotenv from "dotenv"
 const uri = "mongodb://localhost:27017/notfier";
 
 export async function connectMongo() {
   const client = new MongoClient(uri);
-  let db = ''
+
   try {
     client.connect();
-    db = client.db('notifier')
     console.log("Connection Successful");
+
   } catch (e) {
     console.log("Error:", e);
   }
-  return [db,client]
+  return client
 }
 
 export async function checkExist(collection, key, pk){
@@ -22,8 +23,6 @@ export async function checkExist(collection, key, pk){
   const coll = db.collection(collection)
 
   console.log(await coll.find({key:pk}))
-  
-
 
   return await coll.find({key:pk})
 }
@@ -50,6 +49,24 @@ export const hashPassword = async (password) => {
 // Verify Password
 export const verifyPassword = async (password, hash) => {
   return await bcrypt.compare(password, hash);
+};
+
+
+
+
+import CryptoJS from 'crypto-js';
+
+// Encrypt using AES from crypto-js
+export const encrypt = (text, passphrase) => {
+  const encrypted = CryptoJS.AES.encrypt(text, passphrase).toString();
+  return encrypted;
+};
+
+// Decrypt using AES from crypto-js
+export const decrypt = (ciphertext, passphrase) => {
+  const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+  return decrypted;
 };
 
 

@@ -16,35 +16,46 @@
     <title>Users Logged Registered</title>
   </head>
   <body>
+    
     <div class="container m-5">
+
       <div class="container-sm w-90">
+        
         <div class="row container-sm">
           <h1 class="col-10">User Info</h1>
           <div
-            class="col-2 container-sm d-flex flex-row justify-content-center align-items-center"
+            class="col-2 container-sm d-flex flex-row align-items-center"
           >
-            <h4>Add Users</h4>
-            <button
+            
+            <div class="button-group d-flex flex-row justify-content-between">
+              <button
               class="btn btn-primary justify-content-end"
               data-bs-toggle="modal"
               data-bs-target="#addUserFormModal"
             >
               <i class="bi bi-plus fs-3"></i>
             </button>
+            <button class="btn btn-primary" id="scrapeData"><i class="bi bi-bucket fs-3"></i></button>
+            </div>
+            
           </div>
         </div>
 
         <table class="table">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Enrollment Number</th>
-              <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              
+              <th>Get Mailed</th>
               <th>Number of Courses</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
+          <tbody class="tbody">
+
+          </tbody>
         </table>
       </div>
       <div
@@ -55,6 +66,10 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
+          <div class="alert alert-dismissible fade" role="alert">
+            <strong id="errorMsg">Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
@@ -67,6 +82,22 @@
             </div>
             <div class="modal-body">
               <form id="addUserForm" class="row needs-validation" novalidate>
+                <div class="form-group col-12">
+                  <label for="addUser_name" class="form-label"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="addUser_name"
+                    required
+                    
+                    
+                  />
+                  <div class="invalid-feedback">
+                    Name
+                  </div>
+                </div>
                 <div class="form-group col-6">
                   <label for="addUser_enroll" class="form-label"
                     >Enrollment Number</label
@@ -78,7 +109,7 @@
                     required
                     minlength="8"
                     max-length="8"
-                    pattern="[0-9{8}]"
+                    
                   />
                   <div class="invalid-feedback">
                     Please enter a valid enrollment number (8 characters).
@@ -97,7 +128,7 @@
                   </div>
                 </div>
                 <div class="form-group col-12">
-                  <label for="addUser_Pw" class="form-label">Password</label>
+                  <label for="addUser_Pw" class="form-label">Password for VLE account</label>
                   <input
                     type="password"
                     class="form-control"
@@ -106,18 +137,19 @@
                   />
                   <div class="invalid-feedback">Please enter a password.</div>
                 </div>
-                <div class="form-group col-3 d-flex flex-row">
+                <div class="form-group col-12 d-flex flex-row">
                   <input type="checkbox" class="form-check-input" id="showPw" />
-                  <label for="showPw" class="form-label">Show Password</label>
+                  <label for="showPw" class="form-check-label">Show Password</label>
                 </div>
                 <div class="form-group col-12 d-flex flex-row">
                   <input
                     type="checkbox"
                     class="form-check-input"
                     id="addUser-sendMail"
+                    
                   />
-                  
-                  <label for="addUser-sendMail" class="form-label">
+
+                  <label for="addUser-sendMail" class="form-check-label">
                     Send Mail
                   </label>
                 </div>
@@ -138,8 +170,6 @@
           </div>
         </div>
       </div>
-      
-
     </div>
 
     <script
@@ -153,7 +183,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script></script>
     <script>
       const cBox = document.getElementById("showPw");
       const pwInpt = document.getElementById("addUser_Pw");
@@ -161,28 +190,9 @@
         pwInpt.type = cBox.checked ? "text" : "password";
       });
 
-      // Validate form before submission
-
-      document
-        .getElementById("addUser-btn")
-        .addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent form from submitting
-          const form = document.getElementById("addUserForm");
-
-          if (form.checkValidity() === false) {
-            form.classList.add("was-validated"); // Add Bootstrap validation class
-          } else {
-            // Form is valid, you can proceed with submission
-            alert("Form is valid!"); // Replace this with actual submission logic
-            form.classList.remove("was-validated"); // Reset validation state
-            const modal = bootstrap.Modal.getInstance(
-              document.getElementById("addUserForm")
-            );
-            modal.hide(); // Close the modal after submission
-          }
-        });
-
-      console.log(document.getElementById("addUserForm"));
+      
     </script>
+
+    <script src="../src/main.js"></script>
   </body>
 </html>
