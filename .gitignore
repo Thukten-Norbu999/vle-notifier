@@ -1,4 +1,4 @@
 .env
 
 
-/api/db.js
+./api/db.js
